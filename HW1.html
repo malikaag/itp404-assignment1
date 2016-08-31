@@ -1,0 +1,132 @@
+<script>
+
+//HOMEWORK 1 
+//ITP 404
+//Malika Agrawal
+
+//Task 1
+var reviewsData = {
+  data: [
+    {
+      id: 1,
+      attributes: {
+        'review-title': 'Terrible!',
+        'stars': 1,
+        'cost': 'high'
+      }
+    },
+    {
+      id: 2,
+      attributes: {
+        'review-title': 'Decent place',
+        'stars': 3,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 3,
+      attributes: {
+        'review-title': 'I would come again',
+        'stars': 3.5,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 4,
+      attributes: {
+        'review-title': 'So good, and cheap!',
+        'stars': 4,
+        'cost': 'low-average'
+      }
+    },
+    {
+      id: 5,
+      attributes: {
+        'review-title': 'Good, but pricey!',
+        'stars': 4,
+        'cost': 'high'
+      }
+    }
+  ]
+};
+
+
+function extractReviews(reviewsData) {
+  var reviews = reviewsData.data.map(function(review){
+  	return {
+  		id: review.id,
+  		title: review.attributes['review-title'],
+  		stars: review.attributes['stars'],
+  		cost: review.attributes['cost']
+  	};
+  });
+  return reviews;
+};
+
+console.log(extractReviews(reviewsData));
+
+
+//Task 2
+
+var reviews = [
+  { id: 1, title: 'Terrible!', stars: 1, cost: 'high' },
+  { id: 2, title: 'Decent place', stars: 3, cost: 'average' },
+  { id: 3, title: 'I would come again', stars: 3.5, cost: 'average' },
+  { id: 4, title: 'So good, and cheap!', stars: 4, cost: 'low-average' },
+  { id: 5, title: 'Good, but pricey!', stars: 4, cost: 'high' }
+];
+
+function findGoodReviews(reviews){
+	var goodReviews = reviews.filter(function(review){
+		return review.title.toUpperCase().indexOf('GOOD') != -1;
+	});
+	return goodReviews;
+};
+console.log(findGoodReviews(reviews));
+
+
+//Task 3
+var reviews = [
+  { id: 1, title: 'Terrible!', stars: 1, cost: 'high' },
+  { id: 2, title: 'Decent place', stars: 3, cost: 'average' },
+  { id: 3, title: 'I would come again', stars: 3.5, cost: 'average' },
+  { id: 4, title: 'So good, and cheap!', stars: 4, cost: 'low-average' },
+  { id: 5, title: 'Good, but pricey!', stars: 4, cost: 'high' }
+];
+
+function classifyReviewsByCost(reviews) {
+
+var highCount = 0;
+var averageCount = 0;
+var lowavgCount = 0;
+
+var reviewCostCount = reviews.reduce(function(reviewObject, review){
+		console.log(reviewObject[review.cost]);
+
+		if(review.cost == 'high'){
+			highCount = highCount + 1;
+		}
+
+		if(review.cost == 'average'){
+			averageCount = averageCount + 1;
+		}
+
+		if(review.cost == 'low-average'){
+			lowavgCount = lowavgCount + 1;
+		}
+
+		reviewObject.high = highCount;
+		reviewObject.average = averageCount;
+		reviewObject['low-average'] = lowavgCount;
+
+		return reviewObject;
+	}, {});
+
+	return reviewCostCount;
+}
+console.log(classifyReviewsByCost(reviews));
+
+
+
+</script>
+
